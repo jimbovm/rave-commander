@@ -29,7 +29,25 @@ class UI {
 		return values;
 	}
 
+	static setPwmMode() {
+
+		const checkbox = document.getElementById('pwm_manual');
+		const pwm_rate = document.getElementById('DCO_PWM_RATE');
+
+		if (checkbox.checked) {
+			pwm_rate.disabled = true;
+			pwm_rate.value = 0;
+		}
+		else {
+			pwm_rate.disabled = false;
+		}
+
+		return pwm_rate.disabled;
+	}
+
 	static getDco() {
+
+		let pwmRateDisabled = this.setPwmMode();
 
 		const dcoParams = [
 			'DCO_ENV_MODE',
@@ -45,6 +63,11 @@ class UI {
 		];
 
 		const dco = this.getParams(dcoParams);
+
+		// constrain PWM rate to 1..127 if adjusted manually; 0 is manual PW depth
+		if ((pwmRateDisabled === false) && (dco['DCO_PWM_RATE'] === 0)) {
+			dco['DCO_PWM_RATE'] = 1;
+		}
 
 		const waveformParams = [
 			'DCO_WAVEFORM_PULSE',
