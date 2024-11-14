@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+
+<head>
+	<title>Rave Commander</title>
+</head>
+
+<script src='UI.js'></script>
+
+<body>
+	<form id='midi'>
+		<fieldset id='midi'>
+			<legend>MIDI</legend>
+			<p id='midi'>
+				<label for='midi_in'>MIDI in</label>
+				<select id='midi_in'></select>
+				<label for='midi_out'>MIDI out</label>
+				<select id='midi_out'></select>
+				<label for='channel'>Channel</label>
+				<select id='channel' onchange='UI.getChannel()'>
+					<option value='0'>1</option>
+					<option value='1'>2</option>
+					<option value='2'>3</option>
+					<option value='3'>4</option>
+					<option value='4'>5</option>
+					<option value='5'>6</option>
+					<option value='6'>7</option>
+					<option value='7'>8</option>
+					<option value='8'>9</option>
+					<option value='9'>10</option>
+					<option value='10'>11</option>
+					<option value='11'>12</option>
+					<option value='12'>13</option>
+					<option value='13'>14</option>
+					<option value='14'>15</option>
+					<option value='15'>16</option>
+				</select>
+			</p>
+		</fieldset>
+		<fieldset id='tone_ctl' onchange='UI.getTone()'>
+			<legend>Tone</legend>
+			<p id='_tone'>
+				<label for='tone'>Tone</label>
+				<select id='tone'>
+					<optgroup id='preset' label='Preset'>
+						<option value='0'>1</option>
+						<option value='1'>2</option>
+						<option value='2'>3</option>
+						<option value='3'>4</option>
+						<option value='4'>5</option>
+						<option value='5'>6</option>
+						<option value='6'>7</option>
+						<option value='7'>8</option>
+						<option value='8'>9</option>
+						<option value='9'>10</option>
+						<option value='10'>11</option>
+						<option value='11'>12</option>
+						<option value='12'>13</option>
+						<option value='13'>14</option>
+						<option value='14'>15</option>
+						<option value='15'>16</option>
+						<option value='16'>17</option>
+						<option value='17'>18</option>
+						<option value='18'>19</option>
+						<option value='19'>20</option>
+						<option value='20'>21</option>
+						<option value='21'>22</option>
+						<option value='22'>23</option>
+						<option value='23'>24</option>
+						<option value='24'>25</option>
+						<option value='25'>26</option>
+						<option value='26'>27</option>
+						<option value='27'>28</option>
+						<option value='28'>29</option>
+						<option value='29'>30</option>
+						<option value='30'>31</option>
+						<option value='31'>32</option>
+						<option value='32'>33</option>
+						<option value='33'>34</option>
+						<option value='34'>35</option>
+						<option value='35'>36</option>
+						<option value='36'>37</option>
+						<option value='37'>38</option>
+						<option value='38'>39</option>
+						<option value='39'>40</option>
+						<option value='40'>41</option>
+						<option value='41'>42</option>
+						<option value='42'>43</option>
+						<option value='43'>44</option>
+						<option value='44'>45</option>
+						<option value='45'>46</option>
+						<option value='46'>47</option>
+						<option value='47'>48</option>
+						<option value='48'>49</option>
+						<option value='49'>50</option>
+						<option value='50'>51</option>
+						<option value='51'>52</option>
+						<option value='52'>53</option>
+						<option value='53'>54</option>
+						<option value='54'>55</option>
+						<option value='55'>56</option>
+						<option value='56'>57</option>
+						<option value='57'>58</option>
+						<option value='58'>59</option>
+						<option value='59'>60</option>
+						<option value='60'>61</option>
+						<option value='61'>62</option>
+						<option value='62'>63</option>
+						<option value='63'>64</option>
+					</optgroup>
+					<optgroup id='memory' label='Memory'>
+						<option value='64'>65</option>
+						<option value='65'>66</option>
+						<option value='66'>67</option>
+						<option value='67'>68</option>
+						<option value='68'>69</option>
+						<option value='69'>70</option>
+						<option value='70'>71</option>
+						<option value='71'>72</option>
+						<option value='72'>73</option>
+						<option value='73'>74</option>
+						<option value='74'>75</option>
+						<option value='75'>76</option>
+						<option value='76'>77</option>
+						<option value='77'>78</option>
+						<option value='78'>79</option>
+						<option value='79'>80</option>
+						<option value='80'>81</option>
+						<option value='81'>82</option>
+						<option value='82'>83</option>
+						<option value='83'>84</option>
+						<option value='84'>85</option>
+						<option value='85'>86</option>
+						<option value='86'>87</option>
+						<option value='87'>88</option>
+						<option value='88'>89</option>
+						<option value='89'>90</option>
+						<option value='90'>91</option>
+						<option value='91'>92</option>
+						<option value='92'>93</option>
+						<option value='93'>94</option>
+						<option value='94'>95</option>
+						<option value='95'>96</option>
+						<option value='96'>97</option>
+						<option value='97'>98</option>
+						<option value='98'>99</option>
+						<option value='99'>100</option>
+						<option value='100'>101</option>
+						<option value='101'>102</option>
+						<option value='102'>103</option>
+						<option value='103'>104</option>
+						<option value='104'>105</option>
+						<option value='105'>106</option>
+						<option value='106'>107</option>
+						<option value='107'>108</option>
+						<option value='108'>109</option>
+						<option value='109'>110</option>
+						<option value='110'>111</option>
+						<option value='111'>112</option>
+						<option value='112'>113</option>
+						<option value='113'>114</option>
+						<option value='114'>115</option>
+						<option value='115'>116</option>
+						<option value='116'>117</option>
+						<option value='117'>118</option>
+						<option value='118'>119</option>
+						<option value='119'>120</option>
+						<option value='120'>121</option>
+						<option value='121'>122</option>
+						<option value='122'>123</option>
+						<option value='123'>124</option>
+						<option value='124'>125</option>
+						<option value='125'>126</option>
+						<option value='126'>127</option>
+						<option value='127'>128</option>
+					</optgroup>
+				</select>
+			</p>
+		</fieldset>
+	</form>
+	<form id=' synth_controls'>
+		<fieldset id='dco_ctl' oninput='UI.getDco()'>
+			<legend>DCO</legend>
+			<p id='_saw_type' class='saw'>
+				<label for='saw_type'>Saw Type</label>
+				<label for='saw_0'>Off</label>
+				<input name='saw_type' id='saw_0' value='0' type='radio' />
+				<label for='saw_1'>1</label>
+				<input name='saw_type' id='saw_1' value='1' type='radio' checked />
+				<label for='saw_2'>2</label>
+				<input name='saw_type' id='saw_2' value='2' type='radio' />
+				<label for='saw_3'>3</label>
+				<input name='saw_type' id='saw_3' value='3' type='radio' />
+				<label for='saw_4'>4</label>
+				<input name='saw_type' id='saw_4' value='4' type='radio' />
+				<label for='saw_5'>5</label>
+				<input name='saw_type' id='saw_5' value='5' type='radio' />
+			</p>
+			<p id='_pulse_type' class='pulse'>
+				<label for='pulse_type'>Pulse Type</label>
+				<label for='pulse_0'>Off</label>
+				<input name='pulse_type' id='pulse_0' value='0' type='radio' checked>
+				<label for='pulse_1'>1</label>
+				<input name='pulse_type' id='pulse_1' value='1' type='radio'>
+				<label for='pulse_2'>2</label>
+				<input name='pulse_type' id='pulse_2' value='2' type='radio'>
+				<label for='pulse_3'>3</label>
+				<input name='pulse_type' id='pulse_3' value='3' type='radio'>
+			</p>
+			<p id='_sub_type'>
+				<label for='sub_type'>Sub Type</label>
+				<label for='sub_0'>Off</label>
+				<input name='sub_type' id='sub_0' value='0' type='radio' checked>
+				<label for='sub_1'>1</label>
+				<input name='sub_type' id='sub_1' value='1' type='radio'>
+				<label for='sub_2'>2</label>
+				<input name='sub_type' id='sub_2' value='2' type='radio'>
+				<label for='sub_3'>3</label>
+				<input name='sub_type' id='sub_3' value='3' type='radio'>
+				<label for='sub_4'>4</label>
+				<input name='sub_type' id='sub_4' value='4' type='radio'>
+				<label for='sub_5'>5</label>
+				<input name='sub_type' id='sub_5' value='5' type='radio'>
+			</p>
+			<p id='_dco_modulation'>
+				<label for='dco_env_mode'>Env Mode</label>
+				<select id='dco_env_mode'>
+					<option value='0'>normal</option>
+					<option value='1'>inverse</option>
+					<option value='2'>inverse (dynamics)
+					</option>
+					<option value='3'>dynamics</option>
+				</select>
+				<label for='dco_lfo_amt'>LFO Amt</label>
+				<input id='dco_lfo_amt' type='range' min='0' max='127' value='0'>
+				<label for='dco_env_amt'>Env Amt</label>
+				<input id='dco_env_amt' type='range' min='0' max='127' value='0'>
+				<label for='dco_pw'>PW/PWM</label>
+				<input id='dco_pw' type='range' min='0' max='127' value='0' />
+				<label for='dco_pwm_rate'>PWM Rate</label>
+				<input id='dco_pwm_rate' type='range' min='0' max='127' value='0' />
+				<label for='dco_aft'>Aftertouch Amt</label>
+				<input id='dco_aft' type='range' min='0' max='127' value='0' />
+			</p>
+			<p id='_dco_levels'>
+				<label for='sub_level'>Sub Level</label>
+				<input id='sub_level' type='range' min='0' max='3' value='0' />
+
+				<label for='noise_level'>Noise Level</label>
+				<input id='noise_level' type='range' min='0' max='3' value='0' />
+			</p>
+			<p id='_dco_misc'>
+				<label for='range'>Range</label>
+				<input id='range' type='range' min='0' max='3' value='1' />
+				<label for='dco_bend'>Bend Range</label>
+				<input id='dco_bend' type='range' min='0' max='12' value='2' />
+			</p>
+		</fieldset>
+		<fieldset id='lfo' oninput='UI.getLfo()'>
+			<legend>LFO</legend>
+			<label for='lfo_rate'>Rate</label>
+			<input id='lfo_rate' type='range' min='0' max='127' value='63' />
+			<label for='lfo_delay'>Delay</label>
+			<input id='lfo_delay' type='range' min='0' max='127' value='0' />
+		</fieldset>
+		<fieldset id='vcf_ctl' oninput='UI.getVcf()'>
+			<legend>VCF</legend>
+			<p id='vcf_tone'>
+				<label for='cutoff'>Cutoff</label>
+				<input id='cutoff' type='range' min='0' max='127' value='127' />
+				<label for='res'>Resonance</label>
+				<input id='res' type='range' min='0' max='127' value='0' />
+				<label for='hpf'>HPF</label>
+				<input id='hpf' type='range' min='0' max='3' value='1' />
+			</p>
+			<p id='vcf_modulation'>
+				<label for='vcf_lfo_amt'>LFO Amt</label>
+				<input id='vcf_lfo_amt' type='range' min='0' max='127' value='0' />
+				<label for='vcf_env_mode'>Env Mode</label>
+				<select id='vcf_env_mode'>
+					<option value='0'>normal</option>
+					<option value='1'>inverse</option>
+					<option value='2'>inverse (dynamics)
+					</option>
+					<option value='3'>dynamics</option>
+				</select>
+				<label for='vcf_env_amt'>Env Amt</label>
+				<input id='vcf_env_amt' type='range' min='0' max='127' value='0' />
+				<label for='vcf_kybd'>Key Follow</label>
+				<input id='vcf_kybd' type='range' min='0' max='127' value='0' />
+				<label for='vcf_after'>Aftertouch Amt</label>
+				<input id='vcf_after' type='range' min='0' max='127' value='0' />
+			</p>
+		</fieldset>
+		<fieldset id='envelope_ctl' oninput='UI.getEnvelope()'>
+			<legend>Envelope</legend>
+			<p class='_envelope'>
+				<label for='t1'>T1</label>
+				<input id='t1' type='range' min='0' max='127' value='0' />
+				<label for='l1'>L1</label>
+				<input id='l1' type='range' min='0' max='127' value='127' />
+				<label for='t2'>T2</label>
+				<input id='t2' type='range' min='0' max='127' value='32' />
+				<label for='l2'>L2</label>
+				<input id='l2' type='range' min='0' max='127' value='48' />
+				<label for='t3'>T3</label>
+				<input id='t3' type='range' min='0' max='127' value='0' />
+				<label for='l3'>L3</label>
+				<input id='l3' type='range' min='0' max='127' value='48' />
+				<label for='t4'>T4</label>
+				<input id='t4' type='range' min='0' max='127' value='16' />
+			</p>
+			<p class='_envelope_mod'>
+				<label for='env_kybd'>Key Follow</label>
+				<input id='env_kybd' type='range' min='0' max='127' value='0' />
+			</p>
+		</fieldset>
+		<fieldset id='chorus_ctl' oninput='UI.getChorus()'>
+			<legend>Chorus</legend>
+			<p class='_chorus'>
+				<label for='chorus_on'>On</label>
+				<input type='checkbox' id='chorus_on' name='chorus_on' />
+				<label for='chorus_rate'>Rate</label>
+				<input id='chorus_rate' type='range' min='0' max='127' value='64' />
+			</p>
+		</fieldset>
+	</form>
+</body>
+
+</html>
