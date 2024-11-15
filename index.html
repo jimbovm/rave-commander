@@ -12,11 +12,11 @@
 			<legend>MIDI</legend>
 			<p id='midi'>
 				<label for='midi_in'>MIDI in</label>
-				<select id='midi_in' onchange='UI.getMIDIInput()'></select>
+				<select id='midi_in' onchange='ui.getMIDIInput()'></select>
 				<label for='midi_out'>MIDI out</label>
-				<select id='midi_out' onchange='UI.getMIDIOutput()''></select>
+				<select id='midi_out' onchange='ui.getMIDIOutput()''></select>
 				<label for='channel'>Channel</label>
-				<select id='channel' onchange='UI.getChannel()'>
+				<select id='channel' onchange='ui.getChannel()'>
 					<option value='0'>1</option>
 					<option value='1'>2</option>
 					<option value='2'>3</option>
@@ -36,7 +36,7 @@
 				</select>
 			</p>
 		</fieldset>
-		<fieldset id='tone_ctl' onchange='UI.getTone()'>
+		<fieldset id='tone_ctl' onchange='ui.getTone()'>
 			<legend>Tone</legend>
 			<p id='_tone'>
 				<label for='tone'>Tone</label>
@@ -178,7 +178,7 @@
 		</fieldset>
 	</form>
 	<form id=' synth_controls'>
-		<fieldset id='dco_ctl' oninput='UI.getDco()'>
+		<fieldset id='dco_ctl' oninput='ui.getDco()'>
 			<legend>DCO</legend>
 			<p id='_saw_type' class='saw'>
 				<label for='DCO_WAVEFORM_SAWTOOTH'>Saw Type</label>
@@ -259,14 +259,14 @@
 				<input id='BENDER_RANGE' type='range' min='0' max='12' value='1' />
 			</p>
 		</fieldset>
-		<fieldset id='lfo' oninput='UI.getLfo()'>
+		<fieldset id='lfo' oninput='ui.getLfo()'>
 			<legend>LFO</legend>
 			<label for='LFO_RATE'>Rate</label>
 			<input id='LFO_RATE' type='range' min='0' max='127' value='63' />
 			<label for='LFO_DELAY_TIME'>Delay</label>
 			<input id='LFO_DELAY_TIME' type='range' min='0' max='127' value='0' />
 		</fieldset>
-		<fieldset id='vcf_ctl' oninput='UI.getVcf()'>
+		<fieldset id='vcf_ctl' oninput='ui.getVcf()'>
 			<legend>VCF</legend>
 			<p id='vcf_tone'>
 				<label for='VCF_CUTOFF_FREQ'>Cutoff</label>
@@ -295,7 +295,7 @@
 				<input id='VCF_AFTER_DEPTH' type='range' min='0' max='127' value='0' />
 			</p>
 		</fieldset>
-		<fieldset id='envelope_ctl' oninput='UI.getEnvelope()'>
+		<fieldset id='envelope_ctl' oninput='ui.getEnvelope()'>
 			<legend>Envelope</legend>
 			<p class='_envelope'>
 				<label for='ENV_T1'>T1</label>
@@ -318,7 +318,7 @@
 				<input id='ENV_KEY_FOLLOW' type='range' min='0' max='127' value='0' />
 			</p>
 		</fieldset>
-		<fieldset id='chorus_ctl' oninput='UI.getChorus()'>
+		<fieldset id='chorus_ctl' oninput='ui.getChorus()'>
 			<legend>Chorus</legend>
 			<p class='_chorus'>
 				<label for='CHORUS'>On</label>

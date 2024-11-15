@@ -30,27 +30,27 @@ class UI {
 		updateSelector(this.midiAccess.outputs, midiOutSelect);
 	}
 
-	static getMIDIInput() {
+	getMIDIInput() {
 		
 		const midiInSelect = document.getElementById('midi_in');
 
-		const midiInput = midiAccess.inputs.get(midiInSelect.value);
+		const midiInput = this.midiAccess.inputs.get(midiInSelect.value);
 
 		console.log(`UI changed MIDI input to ${midiInput.name} (${midiInput.id})`);
 		return midiInput;
 	}
 
-	static getMIDIOutput() {
+	getMIDIOutput() {
 		
 		const midiOutSelect = document.getElementById('midi_out');
 
-		const midiOutput = midiAccess.outputs.get(midiOutSelect.value);
+		const midiOutput = this.midiAccess.outputs.get(midiOutSelect.value);
 
 		console.log(`UI changed MIDI input to ${midiOutput.name} (${midiOutput.id})`);
 		return midiOutput;
 	}
 
-	static getChannel() {
+	getChannel() {
 
 		const channel = parseInt(document.getElementById('channel').value);
 
@@ -58,7 +58,7 @@ class UI {
 		return channel;
 	}
 
-	static getTone() {
+	getTone() {
 
 		const tone = parseInt(document.getElementById('tone').value);
 
@@ -66,7 +66,7 @@ class UI {
 		return tone;
 	}
 
-	static getParams(params) {
+	getParams(params) {
 
 		const values = {};
 
@@ -77,7 +77,7 @@ class UI {
 		return values;
 	}
 
-	static setPwmMode() {
+	setPwmMode() {
 
 		const checkbox = document.getElementById('pwm_manual');
 		const pwm_rate = document.getElementById('DCO_PWM_RATE');
@@ -93,7 +93,7 @@ class UI {
 		return pwm_rate.disabled;
 	}
 
-	static getDco() {
+	getDco() {
 
 		let pwmRateDisabled = this.setPwmMode();
 
@@ -133,7 +133,7 @@ class UI {
 		return dco;
 	}
 
-	static getLfo() {
+	getLfo() {
 
 		const lfoParams = [
 			'LFO_RATE',
@@ -146,7 +146,7 @@ class UI {
 		return lfo;
 	}
 
-	static getVcf() {
+	getVcf() {
 
 		const vcfParams = [
 			'HPF_CUTOFF_FREQ',
@@ -165,7 +165,7 @@ class UI {
 		return filter;
 	}
 
-	static getEnvelope() {
+	getEnvelope() {
 
 		let envParams = [
 			'ENV_T1',
@@ -184,7 +184,7 @@ class UI {
 		return env;
 	}
 
-	static getChorus() {
+	getChorus() {
 
 		const chorus = {};
 
