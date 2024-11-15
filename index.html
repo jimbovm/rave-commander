@@ -14,7 +14,7 @@
 				<label for='midi_in'>MIDI in</label>
 				<select id='midi_in' onchange='ui.getMIDIInput()'></select>
 				<label for='midi_out'>MIDI out</label>
-				<select id='midi_out' onchange='ui.getMIDIOutput()''></select>
+				<select id='midi_out' onchange='ui.getMIDIOutput()'></select>
 				<label for='channel'>Channel</label>
 				<select id='channel' onchange='ui.getChannel()'>
 					<option value='0'>1</option>
@@ -243,7 +243,7 @@
 				<label for='DCO_PWM_RATE'>PWM Rate</label>
 				<input id='DCO_PWM_RATE' type='range' min='0' max='127' value='0' disabled/>
 				<label for='DCO_AFTER_DEPTH'>Aftertouch Amt</label>
-				<input id='DCO_AFTER_DEPTH' type='range' min='0' max='127' value='0' />
+				<input id='DCO_AFTER_DEPTH' type='range' min='0' max='15' value='0' />
 			</p>
 			<p id='_dco_levels'>
 				<label for='DCO_SUB_LEVEL'>Sub Level</label>
@@ -292,7 +292,7 @@
 				<label for='VCF_KEY_FOLLOW'>Key Follow</label>
 				<input id='VCF_KEY_FOLLOW' type='range' min='0' max='127' value='0' />
 				<label for='VCF_AFTER_DEPTH'>Aftertouch Amt</label>
-				<input id='VCF_AFTER_DEPTH' type='range' min='0' max='127' value='0' />
+				<input id='VCF_AFTER_DEPTH' type='range' min='0' max='15' value='0' />
 			</p>
 		</fieldset>
 		<fieldset id='envelope_ctl' oninput='ui.getEnvelope()'>
@@ -317,6 +317,20 @@
 				<label for='ENV_KEY_FOLLOW'>Key Follow</label>
 				<input id='ENV_KEY_FOLLOW' type='range' min='0' max='127' value='0' />
 			</p>
+		</fieldset>
+		<fieldset id='vca_ctl' oninput='ui.getVca()''>
+			<legend>VCA</legend>
+			<label for='VCA_LEVEL'>Level</label>
+			<input id='VCA_LEVEL' type='range' min='0' max='127' value='90' />
+			<label for='VCA_AFTER_DEPTH'>Aftertouch Amt</label>
+			<input id='VCA_AFTER_DEPTH' type='range' min='0' max='15' value='0' />
+			<label for='VCA_ENV_MODE'>Env Mode</label>
+			<select id='VCA_ENV_MODE'>
+				<option value='0'>ENV</option>
+				<option value='1'>Gate</option>
+				<option value='2'>ENV with Dynamics</option>
+				<option value='3'>Gate with Dynamics</option>
+			</select>
 		</fieldset>
 		<fieldset id='chorus_ctl' oninput='ui.getChorus()'>
 			<legend>Chorus</legend>
