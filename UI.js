@@ -2,11 +2,59 @@
 
 class UI {
 
+	updateMIDIPorts() {
+
+		console.log('Refreshing MIDI ports...')
+
+		function updateSelector(ports, selector) {
+			
+			ports.forEach((port) => {
+
+				let option = document.createElement('option');
+				option.text = port.name;
+				option.value = port.id;
+				option.id = port.id;
+				selector.add(option);
+
+				console.log(`Adding ${selector.id} port ${port.name}`);
+			});
+		}
+
+		const midiInSelect = document.getElementById('midi_in');
+		const midiOutSelect = document.getElementById('midi_out');
+
+		midiInSelect.innerHTML = "";
+		midiOutSelect.innerHTML = "";
+
+		updateSelector(this.midiAccess.inputs, midiInSelect);
+		updateSelector(this.midiAccess.outputs, midiOutSelect);
+	}
+
+	static getMIDIInput() {
+		
+		const midiInSelect = document.getElementById('midi_in');
+
+		const midiInput = midiAccess.inputs.get(midiInSelect.value);
+
+		console.log(`UI changed MIDI input to ${midiInput.name} (${midiInput.id})`);
+		return midiInput;
+	}
+
+	static getMIDIOutput() {
+		
+		const midiOutSelect = document.getElementById('midi_out');
+
+		const midiOutput = midiAccess.outputs.get(midiOutSelect.value);
+
+		console.log(`UI changed MIDI input to ${midiOutput.name} (${midiOutput.id})`);
+		return midiOutput;
+	}
+
 	static getChannel() {
 
 		const channel = parseInt(document.getElementById('channel').value);
 
-		console.log(channel);
+		console.log(`UI changed channel to ${channel + 1} (${channel})`);
 		return channel;
 	}
 
@@ -14,7 +62,7 @@ class UI {
 
 		const tone = parseInt(document.getElementById('tone').value);
 
-		console.log(tone);
+		console.log(`UI changed tone program to ${tone + 1} (${tone})`);
 		return tone;
 	}
 
@@ -146,4 +194,17 @@ class UI {
 		console.log(chorus);
 		return chorus;
 	}
+
+	constructor(midiAccess) {
+
+		this.midiAccess = midiAccess;
+
+		this.updateMIDIPorts();
+
+		this.midiAccess.onstatechange = () => {
+
+			console.log('MIDIAccess state change');
+			this.updateMIDIPorts();
+		};
+	} 
 }

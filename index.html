@@ -12,9 +12,9 @@
 			<legend>MIDI</legend>
 			<p id='midi'>
 				<label for='midi_in'>MIDI in</label>
-				<select id='midi_in'></select>
+				<select id='midi_in' onchange='UI.getMIDIInput()'></select>
 				<label for='midi_out'>MIDI out</label>
-				<select id='midi_out'></select>
+				<select id='midi_out' onchange='UI.getMIDIOutput()''></select>
 				<label for='channel'>Channel</label>
 				<select id='channel' onchange='UI.getChannel()'>
 					<option value='0'>1</option>
@@ -328,6 +328,16 @@
 			</p>
 		</fieldset>
 	</form>
+	<script>
+
+	midiAccess = null;
+	ui = null;
+
+	navigator.requestMIDIAccess({'sysex': true})
+	.then((access) => midiAccess = access)
+	.then((access) => ui = new UI(access));
+
+	</script>
 </body>
 
 </html>
