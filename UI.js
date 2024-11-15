@@ -37,6 +37,8 @@ class UI {
 		const midiInput = this.midiAccess.inputs.get(midiInSelect.value);
 
 		console.log(`UI changed MIDI input to ${midiInput.name} (${midiInput.id})`);
+
+		synth.input = midiInput;
 		return midiInput;
 	}
 
@@ -47,6 +49,8 @@ class UI {
 		const midiOutput = this.midiAccess.outputs.get(midiOutSelect.value);
 
 		console.log(`UI changed MIDI output to ${midiOutput.name} (${midiOutput.id})`);
+
+		synth.output = midiOutput;
 		return midiOutput;
 	}
 
@@ -130,6 +134,10 @@ class UI {
 		}
 
 		console.log(dco);
+		
+		Object.assign(synth.tone, dco);
+
+		synth.sendSomeParams(Object.keys(dco));
 		return dco;
 	}
 
@@ -143,6 +151,9 @@ class UI {
 		const lfo = this.getParams(lfoParams);
 
 		console.log(lfo);
+		Object.assign(synth.tone, lfo);
+
+		synth.sendSomeParams(Object.keys(lfo));
 		return lfo;
 	}
 
@@ -162,6 +173,10 @@ class UI {
 		const filter = this.getParams(vcfParams);
 
 		console.log(filter);
+
+		Object.assign(synth.tone, filter);
+
+		synth.sendSomeParams(Object.keys(filter));
 		return filter;
 	}
 
@@ -181,6 +196,10 @@ class UI {
 		const env = this.getParams(envParams);
 
 		console.log(env);
+
+		Object.assign(synth.tone, env);
+
+		synth.sendSomeParams(Object.keys(env));
 		return env;
 	}
 
@@ -195,6 +214,10 @@ class UI {
 		const vca = this.getParams(envParams);
 
 		console.log(vca);
+
+		Object.assign(synth.tone, vca);
+
+		synth.sendSomeParams(Object.keys(vca));
 		return vca;
 	}
 
@@ -202,10 +225,14 @@ class UI {
 
 		const chorus = {};
 
-		chorus['CHORUS'] = document.getElementById('CHORUS').checked;
+		chorus['CHORUS'] = document.getElementById('CHORUS').checked ? 1 : 0;
 		chorus['CHORUS_RATE'] = parseInt(document.getElementById('CHORUS_RATE').value);
 
 		console.log(chorus);
+
+		Object.assign(synth.tone, chorus);
+
+		synth.sendSomeParams(Object.keys(chorus));
 		return chorus;
 	}
 
