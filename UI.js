@@ -184,6 +184,20 @@ class UI {
 		return env;
 	}
 
+	getVca() {
+
+		let envParams = [
+			'VCA_ENV_MODE',
+			'VCA_LEVEL',
+			'VCA_AFTER_DEPTH'
+		];
+
+		const vca = this.getParams(envParams);
+
+		console.log(vca);
+		return vca;
+	}
+
 	getChorus() {
 
 		const chorus = {};
