@@ -16,7 +16,7 @@ class UI {
 				option.id = port.id;
 				selector.add(option);
 
-				console.log(`Adding ${selector.id} port ${port.name}`);
+				console.log(`Adding ${selector.id.replace('midi_', 'MIDI ')} port ${port.name}`);
 			});
 		}
 
@@ -46,7 +46,7 @@ class UI {
 
 		const midiOutput = this.midiAccess.outputs.get(midiOutSelect.value);
 
-		console.log(`UI changed MIDI input to ${midiOutput.name} (${midiOutput.id})`);
+		console.log(`UI changed MIDI output to ${midiOutput.name} (${midiOutput.id})`);
 		return midiOutput;
 	}
 
