@@ -28,6 +28,9 @@ class UI {
 
 		updateSelector(this.midiAccess.inputs, midiInSelect);
 		updateSelector(this.midiAccess.outputs, midiOutSelect);
+
+		this.getMIDIInput();
+		this.getMIDIOutput();
 	}
 
 	getMIDIInput() {
@@ -241,11 +244,5 @@ class UI {
 		this.midiAccess = midiAccess;
 
 		this.updateMIDIPorts();
-
-		this.midiAccess.onstatechange = () => {
-
-			console.log('MIDIAccess state change');
-			this.updateMIDIPorts();
-		};
 	} 
 }
