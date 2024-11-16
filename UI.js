@@ -137,7 +137,7 @@ class UI {
 		
 		Object.assign(synth.tone, dco);
 
-		synth.sendSomeParams(Object.keys(dco));
+		synth.sendAllParams();
 		return dco;
 	}
 
@@ -153,7 +153,7 @@ class UI {
 		console.log(lfo);
 		Object.assign(synth.tone, lfo);
 
-		synth.sendSomeParams(Object.keys(lfo));
+		synth.sendAllParams();
 		return lfo;
 	}
 
@@ -176,7 +176,7 @@ class UI {
 
 		Object.assign(synth.tone, filter);
 
-		synth.sendSomeParams(Object.keys(filter));
+		synth.sendAllParams();
 		return filter;
 	}
 
@@ -199,7 +199,7 @@ class UI {
 
 		Object.assign(synth.tone, env);
 
-		synth.sendSomeParams(Object.keys(env));
+		synth.sendAllParams();
 		return env;
 	}
 
@@ -217,7 +217,7 @@ class UI {
 
 		Object.assign(synth.tone, vca);
 
-		synth.sendSomeParams(Object.keys(vca));
+		synth.sendAllParams();
 		return vca;
 	}
 
@@ -232,7 +232,7 @@ class UI {
 
 		Object.assign(synth.tone, chorus);
 
-		synth.sendSomeParams(Object.keys(chorus));
+		synth.sendAllParams();
 		return chorus;
 	}
 
