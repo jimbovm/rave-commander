@@ -188,7 +188,7 @@ class AlphaJuno {
 		message.push(this.SYSEX_START);
 		message.push(this.ROLAND_ID);
 		message.push(opcode);
-		message.push(this.channel);
+		message.push(this.channel - 1);
 		message.push(this.FORMAT_TYPE);
 		message.push(this.LEVEL_NUM);
 		message.push(this.GROUP_NUM);
@@ -198,6 +198,8 @@ class AlphaJuno {
 		}
 
 		message.push(this.SYSEX_END);
+
+		console.log(`Sending complete SysEx message ${message} (${message.length} bytes) to ${this.output.name}`);
 		this.output.send(message);
 	}
 
@@ -206,9 +208,9 @@ class AlphaJuno {
 	 */
 	sendAllParams() {
 
-		let payload = Object.values(this.params);
+		let payload = Object.values(this.tone);
 
-		console.log(`Sending APR with payload ${payload} to ${this.output.name}`);
+		console.log(`Sending APR with payload ${payload} (${payload.length} bytes) to ${this.output.name}`);
 		this.sendSysEx(this.opcodes.APR, payload);
 	}
 
