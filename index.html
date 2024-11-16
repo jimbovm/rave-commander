@@ -1,21 +1,22 @@
 <!DOCTYPE html>
-
+<html lang='en'>
 <head>
 	<title>Rave Commander</title>
 </head>
 
-<script src='UI.js'></script>
-<script src='AlphaJuno.js'></script>
-
 <body>
-	<form id='midi'>
-		<fieldset id='midi'>
+
+	<script src='UI.js'></script>
+	<script src='AlphaJuno.js'></script>
+	
+	<form>
+		<fieldset id='midi_ctl'>
 			<legend>MIDI</legend>
-			<p id='midi'>
+			<p id='_midi'>
 				<label for='midi_in'>MIDI in</label>
-				<select id='midi_in' onchange='ui.getMIDIInput()'></select>
+				<select id='midi_in' onload='ui.getMIDIInput()' onchange='ui.getMIDIInput()'></select>
 				<label for='midi_out'>MIDI out</label>
-				<select id='midi_out' onchange='ui.getMIDIOutput()'></select>
+				<select id='midi_out' onload='ui.getMIDIOutput()' onchange='ui.getMIDIOutput()'></select>
 				<label for='channel'>Channel</label>
 				<select id='channel' onchange='ui.getChannel()'>
 					<option value='0'>1</option>
@@ -178,50 +179,56 @@
 			</p>
 		</fieldset>
 	</form>
-	<form id=' synth_controls'>
+	<form id='synth_controls'>
 		<fieldset id='dco_ctl' oninput='ui.getDco()'>
 			<legend>DCO</legend>
-			<p id='_saw_type' class='saw'>
-				<label for='DCO_WAVEFORM_SAWTOOTH'>Saw Type</label>
-				<label for='saw_0'>Off</label>
-				<input name='DCO_WAVEFORM_SAWTOOTH' id='saw_0' value='0' type='radio' />
-				<label for='saw_1'><img alt='1' src='icons/saw_1.svg' /></label>
-				<input name='DCO_WAVEFORM_SAWTOOTH' id='saw_1' value='1' type='radio' checked />
-				<label for='saw_2'><img alt='2' src='icons/saw_2.svg' /></label>
-				<input name='DCO_WAVEFORM_SAWTOOTH' id='saw_2' value='2' type='radio' />
-				<label for='saw_3'><img alt='3' src='icons/saw_3.svg' /></label>
-				<input name='DCO_WAVEFORM_SAWTOOTH' id='saw_3' value='3' type='radio' />
-				<label for='saw_4'><img alt='4' src='icons/saw_4.svg' /></label>
-				<input name='DCO_WAVEFORM_SAWTOOTH' id='saw_4' value='4' type='radio' />
-				<label for='saw_5'><img alt='5' src='icons/saw_5.svg' /></label>
-				<input name='DCO_WAVEFORM_SAWTOOTH' id='saw_5' value='5' type='radio' />
-			</p>
-			<p id='_pulse_type' class='pulse'>
-				<label for='DCO_WAVEFORM_PULSE'>Pulse Type</label>
-				<label for='pulse_0'>Off</label>
-				<input name='DCO_WAVEFORM_PULSE' id='pulse_0' value='0' type='radio' checked>
-				<label for='pulse_1'><img alt='1' src='icons/pulse_1.svg' /></label>
-				<input name='DCO_WAVEFORM_PULSE' id='pulse_1' value='1' type='radio'>
-				<label for='pulse_2'><img alt='2' src='icons/pulse_2.svg' /></label>
-				<input name='DCO_WAVEFORM_PULSE' id='pulse_2' value='2' type='radio'>
-				<label for='pulse_3'><img alt='3' src='icons/pulse_3.svg' /></label>
-				<input name='DCO_WAVEFORM_PULSE' id='pulse_3' value='3' type='radio'>
-			</p>
-			<p id='_sub_type'>
-				<label for='DCO_WAVEFORM_SUB'>Sub Type</label>
-				<label for='sub_1'><img alt='1' src='icons/sub_1.svg' /></label>
-				<input name='DCO_WAVEFORM_SUB' id='sub_1' value='0' type='radio' checked>
-				<label for='sub_2'><img alt='2' src='icons/sub_2.svg' /></label>
-				<input name='DCO_WAVEFORM_SUB' id='sub_2' value='1' type='radio'>
-				<label for='sub_3'><img alt='3' src='icons/sub_3.svg' /></label>
-				<input name='DCO_WAVEFORM_SUB' id='sub_3' value='2' type='radio'>
-				<label for='sub_4'><img alt='4' src='icons/sub_4.svg' /></label>
-				<input name='DCO_WAVEFORM_SUB' id='sub_4' value='3' type='radio'>
-				<label for='sub_5'><img alt='5' src='icons/sub_5.svg' /></label>
-				<input name='DCO_WAVEFORM_SUB' id='sub_6' value='4' type='radio'>
-				<label for='sub_5'><img alt='6' src='icons/sub_6.svg' /></label>
-				<input name='DCO_WAVEFORM_SUB' id='sub_6' value='5' type='radio'>
-			</p>
+			<fieldset id='saw_ctl'>
+				<legend>Saw Type</legend>
+				<p id='_saw_type' class='saw'>
+					<label for='saw_0'>Off</label>
+					<input name='DCO_WAVEFORM_SAWTOOTH' id='saw_0' value='0' type='radio'>
+					<label for='saw_1'><img alt='1' src='icons/saw_1.svg'></label>
+					<input name='DCO_WAVEFORM_SAWTOOTH' id='saw_1' value='1' type='radio' checked>
+					<label for='saw_2'><img alt='2' src='icons/saw_2.svg'></label>
+					<input name='DCO_WAVEFORM_SAWTOOTH' id='saw_2' value='2' type='radio'>
+					<label for='saw_3'><img alt='3' src='icons/saw_3.svg'></label>
+					<input name='DCO_WAVEFORM_SAWTOOTH' id='saw_3' value='3' type='radio'>
+					<label for='saw_4'><img alt='4' src='icons/saw_4.svg'></label>
+					<input name='DCO_WAVEFORM_SAWTOOTH' id='saw_4' value='4' type='radio'>
+					<label for='saw_5'><img alt='5' src='icons/saw_5.svg'></label>
+					<input name='DCO_WAVEFORM_SAWTOOTH' id='saw_5' value='5' type='radio'>
+				</p>
+			</fieldset>
+			<fieldset id='pulse_ctl'>
+				<legend>Pulse Type</legend>
+				<p id='_pulse_type' class='pulse'>
+					<label for='pulse_0'>Off</label>
+					<input name='DCO_WAVEFORM_PULSE' id='pulse_0' value='0' type='radio' checked>
+					<label for='pulse_1'><img alt='1' src='icons/pulse_1.svg'></label>
+					<input name='DCO_WAVEFORM_PULSE' id='pulse_1' value='1' type='radio'>
+					<label for='pulse_2'><img alt='2' src='icons/pulse_2.svg'></label>
+					<input name='DCO_WAVEFORM_PULSE' id='pulse_2' value='2' type='radio'>
+					<label for='pulse_3'><img alt='3' src='icons/pulse_3.svg'></label>
+					<input name='DCO_WAVEFORM_PULSE' id='pulse_3' value='3' type='radio'>
+				</p>
+			</fieldset>
+			<fieldset id='sub_ctl'>
+				<legend>Sub Type</legend>
+				<p id='_sub_type' class='sub'>
+					<label for='sub_1'><img alt='1' src='icons/sub_1.svg'></label>
+					<input name='DCO_WAVEFORM_SUB' id='sub_1' value='0' type='radio' checked>
+					<label for='sub_2'><img alt='2' src='icons/sub_2.svg'></label>
+					<input name='DCO_WAVEFORM_SUB' id='sub_2' value='1' type='radio'>
+					<label for='sub_3'><img alt='3' src='icons/sub_3.svg'></label>
+					<input name='DCO_WAVEFORM_SUB' id='sub_3' value='2' type='radio'>
+					<label for='sub_4'><img alt='4' src='icons/sub_4.svg'></label>
+					<input name='DCO_WAVEFORM_SUB' id='sub_4' value='3' type='radio'>
+					<label for='sub_5'><img alt='5' src='icons/sub_5.svg'></label>
+					<input name='DCO_WAVEFORM_SUB' id='sub_5' value='4' type='radio'>
+					<label for='sub_5'><img alt='6' src='icons/sub_6.svg'></label>
+					<input name='DCO_WAVEFORM_SUB' id='sub_6' value='5' type='radio'>
+				</p>
+			</fieldset>
 			<p id='_dco_modulation'>
 				<label for='DCO_ENV_MODE'>Env Mode</label>
 				<select id='DCO_ENV_MODE'>
@@ -236,48 +243,48 @@
 				<label for='DCO_ENV_MOD_DEPTH'>Env Amt</label>
 				<input id='DCO_ENV_MOD_DEPTH' type='range' min='0' max='127' value='0'>
 				<label for='DCO_PW_PWM_DEPTH'>PW/PWM Depth</label>
-				<input id='DCO_PW_PWM_DEPTH' type='range' min='0' max='127' value='0' />
+				<input id='DCO_PW_PWM_DEPTH' type='range' min='0' max='127' value='0'>
 				<label for='pwm_manual'>PW Manual</label>
-				<input id='pwm_manual' type='checkbox' checked/>
+				<input id='pwm_manual' type='checkbox' checked>
 				<label for='DCO_PWM_RATE'>PWM Rate</label>
-				<input id='DCO_PWM_RATE' type='range' min='0' max='127' value='0' disabled/>
+				<input id='DCO_PWM_RATE' type='range' min='0' max='127' value='0' disabled>
 				<label for='DCO_AFTER_DEPTH'>Aftertouch Amt</label>
-				<input id='DCO_AFTER_DEPTH' type='range' min='0' max='15' value='0' />
+				<input id='DCO_AFTER_DEPTH' type='range' min='0' max='15' value='0'>
 			</p>
 			<p id='_dco_levels'>
 				<label for='DCO_SUB_LEVEL'>Sub Level</label>
-				<input id='DCO_SUB_LEVEL' type='range' min='0' max='3' value='0' />
+				<input id='DCO_SUB_LEVEL' type='range' min='0' max='3' value='0'>
 
 				<label for='DCO_NOISE_LEVEL'>Noise Level</label>
-				<input id='DCO_NOISE_LEVEL' type='range' min='0' max='3' value='0' />
+				<input id='DCO_NOISE_LEVEL' type='range' min='0' max='3' value='0'>
 			</p>
 			<p id='_dco_misc'>
 				<label for='DCO_RANGE'>Range</label>
-				<input id='DCO_RANGE' type='range' min='0' max='3' value='1' />
+				<input id='DCO_RANGE' type='range' min='0' max='3' value='1'>
 				<label for='BENDER_RANGE'>Bend Range</label>
-				<input id='BENDER_RANGE' type='range' min='0' max='12' value='1' />
+				<input id='BENDER_RANGE' type='range' min='0' max='12' value='1'>
 			</p>
 		</fieldset>
-		<fieldset id='lfo' oninput='ui.getLfo()'>
+		<fieldset id='lfo_ctl' oninput='ui.getLfo()'>
 			<legend>LFO</legend>
 			<label for='LFO_RATE'>Rate</label>
-			<input id='LFO_RATE' type='range' min='0' max='127' value='63' />
+			<input id='LFO_RATE' type='range' min='0' max='127' value='63'>
 			<label for='LFO_DELAY_TIME'>Delay</label>
-			<input id='LFO_DELAY_TIME' type='range' min='0' max='127' value='0' />
+			<input id='LFO_DELAY_TIME' type='range' min='0' max='127' value='0'>
 		</fieldset>
 		<fieldset id='vcf_ctl' oninput='ui.getVcf()'>
 			<legend>VCF</legend>
 			<p id='vcf_tone'>
 				<label for='VCF_CUTOFF_FREQ'>Cutoff</label>
-				<input id='VCF_CUTOFF_FREQ' type='range' min='0' max='127' value='127' />
+				<input id='VCF_CUTOFF_FREQ' type='range' min='0' max='127' value='127'>
 				<label for='VCF_RESONANCE'>Resonance</label>
-				<input id='VCF_RESONANCE' type='range' min='0' max='127' value='0' />
+				<input id='VCF_RESONANCE' type='range' min='0' max='127' value='0'>
 				<label for='HPF_CUTOFF_FREQ'>HPF</label>
-				<input id='HPF_CUTOFF_FREQ' type='range' min='0' max='3' value='0' />
+				<input id='HPF_CUTOFF_FREQ' type='range' min='0' max='3' value='0'>
 			</p>
 			<p id='vcf_modulation'>
 				<label for='VCF_LFO_MOD_DEPTH'>LFO Amt</label>
-				<input id='VCF_LFO_MOD_DEPTH' type='range' min='0' max='127' value='0' />
+				<input id='VCF_LFO_MOD_DEPTH' type='range' min='0' max='127' value='0'>
 				<label for='VCF_ENV_MODE'>Env Mode</label>
 				<select id='VCF_ENV_MODE'>
 					<option value='0'>normal</option>
@@ -287,42 +294,42 @@
 					<option value='3'>dynamics</option>
 				</select>
 				<label for='VCF_ENV_MOD_DEPTH'>Env Amt</label>
-				<input id='VCF_ENV_MOD_DEPTH' type='range' min='0' max='127' value='0' />
+				<input id='VCF_ENV_MOD_DEPTH' type='range' min='0' max='127' value='0'>
 				<label for='VCF_KEY_FOLLOW'>Key Follow</label>
-				<input id='VCF_KEY_FOLLOW' type='range' min='0' max='127' value='0' />
+				<input id='VCF_KEY_FOLLOW' type='range' min='0' max='127' value='0'>
 				<label for='VCF_AFTER_DEPTH'>Aftertouch Amt</label>
-				<input id='VCF_AFTER_DEPTH' type='range' min='0' max='15' value='0' />
+				<input id='VCF_AFTER_DEPTH' type='range' min='0' max='15' value='0'>
 			</p>
 		</fieldset>
 		<fieldset id='envelope_ctl' oninput='ui.getEnvelope()'>
 			<legend>Envelope</legend>
 			<p class='_envelope'>
 				<label for='ENV_T1'>T1</label>
-				<input id='ENV_T1' type='range' min='0' max='127' value='0' />
+				<input id='ENV_T1' type='range' min='0' max='127' value='0'>
 				<label for='ENV_L1'>L1</label>
-				<input id='ENV_L1' type='range' min='0' max='127' value='127' />
+				<input id='ENV_L1' type='range' min='0' max='127' value='127'>
 				<label for='ENV_T2'>T2</label>
-				<input id='ENV_T2' type='range' min='0' max='127' value='32' />
+				<input id='ENV_T2' type='range' min='0' max='127' value='32'>
 				<label for='ENV_L2'>L2</label>
-				<input id='ENV_L2' type='range' min='0' max='127' value='48' />
+				<input id='ENV_L2' type='range' min='0' max='127' value='48'>
 				<label for='ENV_T3'>T3</label>
-				<input id='ENV_T3' type='range' min='0' max='127' value='0' />
+				<input id='ENV_T3' type='range' min='0' max='127' value='0'>
 				<label for='ENV_L3'>L3</label>
-				<input id='ENV_L3' type='range' min='0' max='127' value='48' />
+				<input id='ENV_L3' type='range' min='0' max='127' value='48'>
 				<label for='ENV_T4'>T4</label>
-				<input id='ENV_T4' type='range' min='0' max='127' value='16' />
+				<input id='ENV_T4' type='range' min='0' max='127' value='16'>
 			</p>
 			<p class='_envelope_mod'>
 				<label for='ENV_KEY_FOLLOW'>Key Follow</label>
-				<input id='ENV_KEY_FOLLOW' type='range' min='0' max='127' value='0' />
+				<input id='ENV_KEY_FOLLOW' type='range' min='0' max='127' value='0'>
 			</p>
 		</fieldset>
 		<fieldset id='vca_ctl' oninput='ui.getVca()'>
 			<legend>VCA</legend>
 			<label for='VCA_LEVEL'>Level</label>
-			<input id='VCA_LEVEL' type='range' min='0' max='127' value='90' />
+			<input id='VCA_LEVEL' type='range' min='0' max='127' value='90'>
 			<label for='VCA_AFTER_DEPTH'>Aftertouch Amt</label>
-			<input id='VCA_AFTER_DEPTH' type='range' min='0' max='15' value='0' />
+			<input id='VCA_AFTER_DEPTH' type='range' min='0' max='15' value='0'>
 			<label for='VCA_ENV_MODE'>Env Mode</label>
 			<select id='VCA_ENV_MODE'>
 				<option value='0'>ENV</option>
@@ -335,9 +342,9 @@
 			<legend>Chorus</legend>
 			<p class='_chorus'>
 				<label for='CHORUS'>On</label>
-				<input type='checkbox' id='CHORUS'/>
+				<input type='checkbox' id='CHORUS'>
 				<label for='CHORUS_RATE'>Rate</label>
-				<input id='CHORUS_RATE' type='range' min='0' max='127' value='64' />
+				<input id='CHORUS_RATE' type='range' min='0' max='127' value='64'>
 			</p>
 		</fieldset>
 	</form>
