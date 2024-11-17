@@ -31,6 +31,9 @@ class UI {
 
 		this.getMIDIInput();
 		this.getMIDIOutput();
+
+		this.visualEnvelope = new VisualEnvelope(this);
+		this.visualEnvelope.drawHack();
 	}
 
 	getMIDIInput() {
@@ -197,6 +200,9 @@ class UI {
 		];
 
 		const env = this.getParams(envParams);
+
+		// draw envelope with current values
+		this.visualEnvelope.drawHack();
 
 		console.log(env);
 
