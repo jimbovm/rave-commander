@@ -9,8 +9,6 @@ class VisualEnvelope {
 
 		ctx.clearRect(0, 0, width, height);
 
-		ctx.save();
-
 		ctx.moveTo(0, height);
 		ctx.beginPath();
 
@@ -21,7 +19,7 @@ class VisualEnvelope {
 			let level = this.getEnvelopeLevelValue(l+1);
 			let time = this.getEnvelopeTimeValue(l+1);
 
-			endX = 200 * l + time;
+			endX = 127 * l + time;
 			ctx.lineTo(endX, height-level);
 		}
 
@@ -31,7 +29,6 @@ class VisualEnvelope {
 		ctx.lineTo(0, height);
 		ctx.closePath();
 		ctx.fill();
-		ctx.restore();
 	}
 
 	getEnvelopeElement(type, number) {
