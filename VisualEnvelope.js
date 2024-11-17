@@ -1,6 +1,6 @@
 class VisualEnvelope {
 
-	drawHack() {
+	drawEnvelope() {
 
 		let ctx = this.getContext();
 		let canvas = this.getCanvas();
@@ -19,12 +19,15 @@ class VisualEnvelope {
 		for (let l = 0; l <= 2; l++) {
 		
 			let level = this.getEnvelopeLevelValue(l+1);
+			let time = this.getEnvelopeTimeValue(l+1);
 
-			endX = 200*l;
+			endX = 200 * l + time;
 			ctx.lineTo(endX, height-level);
 		}
 
-		ctx.lineTo(endX, height);
+		let t4 = this.getEnvelopeTimeValue(4);
+
+		ctx.lineTo(endX + t4, height);
 		ctx.lineTo(0, height);
 		ctx.closePath();
 		ctx.fill();
