@@ -32,7 +32,7 @@ class UI {
 		this.getMIDIInput();
 		this.getMIDIOutput();
 
-		this.visualEnvelope = new VisualEnvelope(this);
+		this.visualEnvelope = new VisualEnvelope();
 		this.visualEnvelope.drawEnvelope();
 	}
 

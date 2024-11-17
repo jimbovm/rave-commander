@@ -56,9 +56,4 @@ class VisualEnvelope {
 
 		return this.getCanvas().getContext('2d');
 	}
-
-	constructor(ui) {
-
-		this.ui = ui;
-	}
 }
