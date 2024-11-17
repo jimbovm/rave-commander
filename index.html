@@ -304,6 +304,11 @@
 		</fieldset>
 		<fieldset id='envelope_ctl' oninput='ui.getEnvelope()'>
 			<legend>Envelope</legend>
+			<p class='_visual_envelope'>
+				<canvas height='127' width='508' id='visual_envelope'>
+					Your browser doesn't seem to support HTML5 Canvas. The visual envelope won't work.
+				</canvas>
+			</p>
 			<p class='_envelope'>
 				<label for='ENV_T1'>T1</label>
 				<input id='ENV_T1' type='range' min='0' max='127' value='0'>
@@ -319,11 +324,6 @@
 				<input id='ENV_L3' type='range' min='0' max='127' value='48'>
 				<label for='ENV_T4'>T4</label>
 				<input id='ENV_T4' type='range' min='0' max='127' value='16'>
-			</p>
-			<p class='_visual_envelope'>
-				<canvas height='127' width='800' id='visual_envelope'>
-					Your browser doesn't seem to support HTML5 Canvas. The visual envelope won't work.
-				</canvas>
 			</p>
 			<p class='_envelope_mod'>
 				<label for='ENV_KEY_FOLLOW'>Key Follow</label>
