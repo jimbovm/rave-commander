@@ -152,7 +152,7 @@ class AlphaJuno {
 
 		let message = [];
 		// opcode and channel
-		message.push(0b1011_0000 | this.channel);
+		message.push(0b1011_0000 | this.channel - 1);
 		message.push(0b0111_1011);
 		message.push(0);
 		this.output.send(message);
@@ -160,7 +160,7 @@ class AlphaJuno {
 
 	modulation(amount) {
 		this.sendThreeByteMessage(
-			0b1011_0000 | this.channel,
+			0b1011_0000 | this.channel - 1,
 			0b0000_0001,
 			amount
 		);
@@ -168,7 +168,7 @@ class AlphaJuno {
 
 	programChange(program) {
 		this.sendTwoByteMessage(
-			0b1100_0000 | this.channel,
+			0b1100_0000 | this.channel - 1,
 			program
 		);
 	}
@@ -183,6 +183,8 @@ class AlphaJuno {
 		let message = []
 		message.push(first);
 		message.push(second);
+
+		console.log(`Sending 2-byte MIDI message ${message} to ${this.output.name}`)
 		this.output.send(message);
 	}
 
@@ -198,6 +200,8 @@ class AlphaJuno {
 		message.push(first);
 		message.push(second);
 		message.push(third);
+	
+		console.log(`Sending 3-byte MIDI message ${message} to ${this.output.name}`);
 		this.output.send(message);
 	}
 
@@ -224,7 +228,7 @@ class AlphaJuno {
 
 		message.push(this.SYSEX_END);
 
-		console.log(`Sending complete SysEx message ${message} (${message.length} bytes) to ${this.output.name}`);
+		console.log(`Sending SysEx message ${message} (${message.length} bytes) to ${this.output.name}`);
 		this.output.send(message);
 	}
 
@@ -249,26 +253,46 @@ class AlphaJuno {
 		return Object.keys(this.tone).indexOf(paramName);
 	}
 
-	/**
-	 * Send a subset of the tone parameters to the Alpha Juno.
-	 * 
-	 * @param  {string[]} paramNames - The named parameters to send.
-	 */
-	sendSomeParams(paramNames) {
+	receiveSysEx(message) {
+		console.log(`Decoding SysEx message ${message} received on ${this.input.name}`);
 
-		console.log(`Sending parameters ${paramNames}`);
+		let criticalBytes = [
+			message[0] === this.SYSEX_START,
+			message[1] === this.ROLAND_ID,
+			Object.values(this.opcodes).includes(message[2]),
+			message[4] === this.FORMAT_TYPE,
+			message[5] === this.LEVEL_NUM,
+			message[6] === this.GROUP_NUM,
+			message[message.length-1] === this.SYSEX_END
+		];
 
-		let payload = [];
-
-		for (const paramName of paramNames) {
-			console.log(`${paramName} ${this.getParamNumber(paramName)} ${this.tone[paramName]}`);
-			payload.push(this.getParamNumber(paramName));
-			payload.push(this.tone[paramName]);
+		if (criticalBytes.some(byte => byte === false)) {
+			console.error(`Received SysEx message ${message} is malformed`);
+			return null;
 		}
 
-		console.log(payload);
+		let opcode = message[2];
+		let payload = message.slice(6, -1);
 
-		console.log(`Sending IPR with payload ${payload} to ${this.output.name}`);
-		this.sendSysEx(this.opcodes.IPR, payload);
+		let log = op => console.log(`Decoded ${op} with payload ${payload}`);
+
+		switch (opcode) {
+			case this.opcodes.APR:
+				log('APR', payload);
+				break;
+			case this.opcodes.IPR:
+				log('IPR', payload);
+				break;
+			default:
+				console.log('Decoded unknown SysEx operation');
+		}
+		
+		
+	}
+
+	receiveProgramChange(message) {
+
+		let tone = message[1];
+		console.log(`Receiving program change message for tone ${tone + 1} (${tone}) on ${this.input.name}`);
 	}
 }

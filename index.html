@@ -35,6 +35,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<script src='UI.js'></script>
 	<script src='AlphaJuno.js'></script>
 	<script src='VisualEnvelope.js'></script>
+	<script src='MIDIReceiver.js'></script>
 	
 	<form>
 		<fieldset id='midi_ctl'>
@@ -384,10 +385,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	midiAccess = null;
 	ui = null;
+	midiReceiver = null;
 
 	navigator.requestMIDIAccess({'sysex': true})
 	.then((access) => midiAccess = access)
-	.then((access) => ui = new UI(access));
+	.then((access) => {
+		ui = new UI(access);
+		return ui;
+	})
+	.then(ui => midiReceiver = new MIDIReceiver(midiAccess, ui.getMIDIInput(), ui.getChannel()));
 
 	synth = new AlphaJuno();
 

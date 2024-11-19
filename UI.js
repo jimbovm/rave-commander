@@ -69,6 +69,10 @@ class UI {
 
 		console.log(`UI changed MIDI input to ${midiInput.name} (${midiInput.id})`);
 
+		if (midiReceiver != null) {
+			midiReceiver.setInput(midiInput);
+		}
+		
 		synth.input = midiInput;
 		return midiInput;
 	}
@@ -98,6 +102,8 @@ class UI {
 		const tone = parseInt(document.getElementById('tone').value);
 
 		console.log(`UI changed tone program to ${tone + 1} (${tone})`);
+
+		synth.programChange(tone);
 		return tone;
 	}
 
