@@ -38,6 +38,7 @@ class VisualEnvelope {
 		ctx.beginPath();
 
 		let endX = 0;
+		let endY = 0;
 
 		for (let l = 0; l <= 2; l++) {
 		
@@ -45,12 +46,13 @@ class VisualEnvelope {
 			let time = this.getEnvelopeTimeValue(l+1);
 
 			endX = 127 * l + time;
-			ctx.lineTo(endX, height-level);
+			endY = height-level;
+			ctx.lineTo(endX, endY);
 		}
 
 		let t4 = this.getEnvelopeTimeValue(4);
 
-		ctx.lineTo(endX + t4, height);
+		ctx.bezierCurveTo(endX, endY, endX, height, endX + t4, height, endX + t4, height);
 		ctx.lineTo(0, height);
 		ctx.closePath();
 		ctx.fill();
