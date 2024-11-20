@@ -25,14 +25,60 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
 class VisualEnvelope {
 
-	drawEnvelope() {
+	drawBreakpoints() {
 
-		let ctx = this.getContext();
-		let canvas = this.getCanvas();
-		let width = canvas.width;
-		let height = canvas.height;
+		const ctx = this.getContext();
+		const height = this.getCanvas().height;
+		const width = this.getCanvas().width;
+		const lineWidth = 1;
+
+		ctx.save();
+		
+		ctx.strokeStyle = 'gray';
+		ctx.lineWidth = lineWidth;
+
+		// level breakpoint
+		for (let l = 1; l <= 3; l++) {
+
+			const level = this.getEnvelopeLevelValue(l);
+			ctx.beginPath();
+			ctx.moveTo(0, 127 - level);
+			ctx.lineTo(width, 127 - level);
+			ctx.closePath();
+			ctx.stroke();
+		}
+
+		// time breakpoint
+		let offset = 0;
+
+		for (let l = 1; l <= 4; l++) {
+
+		 	const time = this.getEnvelopeTimeValue(l);
+			ctx.beginPath();
+		 	ctx.moveTo(offset + time, 0);
+		 	ctx.lineTo(offset + time, height);
+			ctx.closePath();
+			ctx.stroke();
+			offset = offset + time;
+		}
+
+		ctx.restore();
+	}
+
+	drawEnvelope() {
+		
+
+		const ctx = this.getContext();
+		const canvas = this.getCanvas();
+		const width = canvas.width;
+		const height = canvas.height;
+		const lineWidth = 2;
 
 		ctx.clearRect(0, 0, width, height);
+		this.drawBreakpoints();
+
+		ctx.lineWidth = lineWidth;
+		ctx.strokeStyle = 'red';
 
 		ctx.moveTo(0, height);
 		ctx.beginPath();
@@ -40,12 +86,12 @@ class VisualEnvelope {
 		let endX = 0;
 		let endY = 0;
 
-		for (let l = 0; l <= 2; l++) {
+		for (let l = 1; l <= 3; l++) {
 		
-			let level = this.getEnvelopeLevelValue(l+1);
-			let time = this.getEnvelopeTimeValue(l+1);
+			let level = this.getEnvelopeLevelValue(l);
+			let time = this.getEnvelopeTimeValue(l);
 
-			endX = 127 * l + time;
+			endX = endX + time;
 			endY = height-level;
 			ctx.lineTo(endX, endY);
 		}
@@ -53,9 +99,12 @@ class VisualEnvelope {
 		let t4 = this.getEnvelopeTimeValue(4);
 
 		ctx.bezierCurveTo(endX, endY, endX, height, endX + t4, height, endX + t4, height);
+
+		ctx.lineTo(endX + t4, height + lineWidth);
+		ctx.lineTo(0, height + lineWidth);
 		ctx.lineTo(0, height);
 		ctx.closePath();
-		ctx.fill();
+		ctx.stroke();
 	}
 
 	getEnvelopeElement(type, number) {
