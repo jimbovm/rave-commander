@@ -276,6 +276,47 @@ class UI {
 		return chorus;
 	}
 
+	setAll() {
+		const waveformParams = synth.waveforms;
+		
+		for (let [paramName, paramValue] of Object.entries(synth.tone)) {
+
+			if (waveformParams.includes(paramName)) {
+
+				// find the right radio button
+				const waveformName = paramName.replace('DCO_WAVEFORM_', '').toLowerCase();
+				let control = document.getElementById(`${waveformName}_${paramValue}`);
+
+				console.log(`Setting waveform control ${waveformName}_${paramValue} to checked`);
+
+				control.checked = true;
+			}
+			else if (paramName === 'CHORUS') {
+
+				const control = document.getElementById(paramName);
+				control.checked = (paramValue === 1);
+			}
+			else if (paramName === 'DCO_PWM_RATE') {
+
+				const rateControl = document.getElementById(paramName);
+				const manualControl = document.getElementById('pwm_manual');
+				const isPWMManual = (paramValue === 0);
+
+				console.log(`${paramName} > 0 === ${!isPWMManual}, pwm_manual should ${isPWMManual ? '' : 'NOT '}be checked`);
+
+				rateControl.value = paramValue;
+				rateControl.disabled = isPWMManual;
+				manualControl.checked = isPWMManual;
+			}
+			else {
+				const control = document.getElementById(paramName);
+				control.value = paramValue;
+			}
+		}
+
+		this.visualEnvelope.drawEnvelope();
+	}
+
 	constructor(midiAccess) {
 
 		this.midiAccess = midiAccess;

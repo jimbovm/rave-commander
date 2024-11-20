@@ -107,7 +107,7 @@ class AlphaJuno {
 
 		this.channel = 1;
 
-		let waveforms = [
+		this.waveforms = [
 			'DCO_WAVEFORM_SAWTOOTH',
 			'DCO_WAVEFORM_PULSE',
 			'DCO_WAVEFORM_SUB'
@@ -115,7 +115,7 @@ class AlphaJuno {
 
 		for (let paramName of Object.keys(this.tone)) {
 
-			if (waveforms.includes(paramName)) {
+			if (this.waveforms.includes(paramName)) {
 				const control = document.querySelector(`input[name=${paramName}]:checked`);
 				this.tone[paramName] = parseInt(control.value);
 			}
@@ -253,6 +253,12 @@ class AlphaJuno {
 		return Object.keys(this.tone).indexOf(paramName);
 	}
 
+	/**
+	 * Receive a System Exclusive message from the Alpha Juno.
+	 * 
+	 * @param {*} message 
+	 * @returns 
+	 */
 	receiveSysEx(message) {
 		console.log(`Decoding SysEx message ${message} received on ${this.input.name}`);
 
@@ -267,19 +273,19 @@ class AlphaJuno {
 		];
 
 		if (criticalBytes.some(byte => byte === false)) {
-			console.error(`Received SysEx message ${message} is malformed`);
+			console.error(`Received SysEx message ${message} is malformed: ${criticalBytes}`);
 			return null;
 		}
 
 		let opcode = message[2];
-		let payload = message.slice(6, -1);
+		let payload = message.slice(7, -1);
 
 		let log = op => console.log(`Decoded ${op} with payload ${payload}`);
 
 		switch (opcode) {
 			case this.opcodes.APR:
 				log('APR', payload);
-				break;
+				return this.receiveAllParamsAndName(payload);
 			case this.opcodes.IPR:
 				log('IPR', payload);
 				break;
@@ -290,9 +296,45 @@ class AlphaJuno {
 		
 	}
 
+	/**
+	 * Receive all parameters and tone name from the Alpha Juno.
+	 * 
+	 * @param {*} payload 
+	 */
+	receiveAllParamsAndName(payload) {
+
+		console.log(`Processing payload ${payload} (${payload.length} bytes)`);
+
+		const toneParams = payload.slice(0, 36);
+		const toneName = payload.slice(-10);
+		const toneNameText = this.decodeToneName(toneName);
+
+		console.log(`${this.receiveAllParamsAndName.name}: Decoded APR payload, tone name "${toneNameText}" (${toneName.length} bytes), tone params ${toneParams} (${toneParams.length} bytes)`);
+
+		for (let p = 0; p < 36; p++) {
+
+			let key = Object.keys(this.tone)[p];
+			console.log(`Tone parameter ${key} set to ${toneParams[p]}`);
+			this.tone[key] = toneParams[p];
+		}
+
+		document.getElementById('tone_name').innerHTML = toneNameText;
+
+		ui.setAll();
+	}
+
+	/**
+	 * Receive a MIDI Program Change message from the Alpha Juno.
+	 * 
+	 * @param {*} message 
+	 */
 	receiveProgramChange(message) {
 
 		let tone = message[1];
-		console.log(`Receiving program change message for tone ${tone + 1} (${tone}) on ${this.input.name}`);
+		console.log(`Received program change message for tone ${tone + 1} (${tone}) on ${this.input.name}`);
+
+		const toneSelect = document.getElementById('tone');
+
+		toneSelect.value = tone;
 	}
 }

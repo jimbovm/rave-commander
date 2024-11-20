@@ -8,13 +8,16 @@ class MIDIReceiver {
 
 		let data = messageEvent.data;
 
-		console.log(`Received MIDI message ${data} on ${this.name} (${data.length} bytes)`)
+		console.log(`Receiving MIDI message ${data} on ${this.name} (${data.length} bytes)`)
 		
+		const PROGRAM_CHANGE = 192;
+		const SYSEX_START = 0xF0;
+
 		switch (data[0]) {
-			case 0xF0:
+			case SYSEX_START:
 				synth.receiveSysEx(data);
 				break;
-			case 0b1100_0000 | 0b1111_0000:
+			case PROGRAM_CHANGE & 0b1111_0000:
 				synth.receiveProgramChange(data);
 				break;
 			default:
@@ -29,16 +32,10 @@ class MIDIReceiver {
 		this.input.onmidimessage = this.receiveMIDI;
 	}
 
-	setChannel(channel) {
-		console.log(`Setting receiver channel to ${channel}`);
-		this.channel = channel;
-	}
-
-	constructor(midiAccess, input, channel) {
+	constructor(midiAccess, input) {
 
 		this.midiAccess = midiAccess;
 		this.input = input;
-		this.channel = channel;
 
 		this.input.onmidimessage = this.receiveMIDI;
 	}
