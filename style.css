@@ -1,0 +1,61 @@
+form#rave_commander {
+	display: grid;
+	grid:
+		'midi midi tone'
+		'dco dco dco'
+		'vcf vcf lfo'
+		'envelope envelope vca'
+		'envelope envelope chorus';
+}
+
+fieldset#midi_ctl {
+	grid-area: midi;
+}
+
+fieldset#tone_ctl {
+	grid-area: tone;
+}
+
+fieldset#envelope_ctl {
+	grid-area: envelope;
+}
+
+fieldset#dco_ctl {
+	grid-area: dco;
+	display: grid;
+	grid:
+		'saw pulse'
+		'sub sub'
+}
+
+fieldset#sawtooth_ctl {
+	grid-area: saw;
+}
+
+fieldset#pulse_ctl {
+	grid-area: pulse;
+}
+
+fieldset#sub_ctl {
+	grid-area: sub;
+}
+
+fieldset#vca_ctl {
+	grid-area: vca;
+}
+
+fieldset#vcf_ctl {
+	grid-area: vcf;
+}
+
+fieldset#lfo_ctl {
+	grid-area: lfo;
+}
+
+fieldset#chorus_ctl {
+	grid-area: chorus;
+}
+
+label img {
+	max-width: 9%;
+}

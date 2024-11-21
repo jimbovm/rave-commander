@@ -24,6 +24,7 @@ SOFTWARE.
 <html lang='en'>
 <head>
 	<title>Rave Commander</title>
+	<link rel='stylesheet' href='style.css'>
 </head>
 
 <body>
@@ -33,7 +34,7 @@ SOFTWARE.
 	<script src='EnvelopeDisplay.js'></script>
 	<script src='MIDIReceiver.js'></script>
 	
-	<form>
+	<form id='rave_commander'>
 		<fieldset id='midi_ctl'>
 			<legend>MIDI</legend>
 			<p id='_midi'>
@@ -203,8 +204,6 @@ SOFTWARE.
 				<span id='tone_name'></span>
 			</p>
 		</fieldset>
-	</form>
-	<form id='synth_controls'>
 		<fieldset id='dco_ctl' oninput='ui.getDCO()'>
 			<legend>DCO</legend>
 			<fieldset id='sawtooth_ctl'>
