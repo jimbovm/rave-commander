@@ -118,7 +118,7 @@ class UI {
 		return values;
 	}
 
-	setPwmMode() {
+	setPWMMode() {
 
 		const checkbox = document.getElementById('pwm_manual');
 		const pwm_rate = document.getElementById('DCO_PWM_RATE');
@@ -134,9 +134,9 @@ class UI {
 		return pwm_rate.disabled;
 	}
 
-	getDco() {
+	getDCO() {
 
-		let pwmRateDisabled = this.setPwmMode();
+		let pwmRateDisabled = this.setPWMMode();
 
 		const dcoParams = [
 			'DCO_ENV_MODE',
@@ -178,7 +178,7 @@ class UI {
 		return dco;
 	}
 
-	getLfo() {
+	getLFO() {
 
 		const lfoParams = [
 			'LFO_RATE',
@@ -194,7 +194,7 @@ class UI {
 		return lfo;
 	}
 
-	getVcf() {
+	getVCF() {
 
 		const vcfParams = [
 			'HPF_CUTOFF_FREQ',
@@ -243,7 +243,7 @@ class UI {
 		return env;
 	}
 
-	getVca() {
+	getVCA() {
 
 		let envParams = [
 			'VCA_ENV_MODE',
