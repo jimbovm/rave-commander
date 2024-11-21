@@ -57,8 +57,8 @@ class UI {
 		this.getMIDIInput();
 		this.getMIDIOutput();
 
-		this.visualEnvelope = new VisualEnvelope();
-		this.visualEnvelope.drawEnvelope();
+		this.envelopeDisplay = new EnvelopeDisplay();
+		this.envelopeDisplay.drawEnvelope();
 	}
 
 	getMIDIInput() {
@@ -233,7 +233,7 @@ class UI {
 		const env = this.getParams(envParams);
 
 		// draw envelope with current values
-		this.visualEnvelope.drawEnvelope();
+		this.envelopeDisplay.drawEnvelope();
 
 		console.log(env);
 
@@ -314,7 +314,7 @@ class UI {
 			}
 		}
 
-		this.visualEnvelope.drawEnvelope();
+		this.envelopeDisplay.drawEnvelope();
 	}
 
 	constructor(midiAccess) {
