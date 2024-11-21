@@ -118,7 +118,7 @@ class UI {
 
 	setPWMMode() {
 
-		const checkbox = document.getElementById('pwm_manual');
+		const checkbox = document.getElementById('pw_manual');
 		const pwm_rate = document.getElementById('DCO_PWM_RATE');
 
 		if (checkbox.checked) {
@@ -297,10 +297,10 @@ class UI {
 			else if (paramName === 'DCO_PWM_RATE') {
 
 				const rateControl = document.getElementById(paramName);
-				const manualControl = document.getElementById('pwm_manual');
+				const manualControl = document.getElementById('pw_manual');
 				const isPWMManual = (paramValue === 0);
 
-				console.log(`${paramName} > 0 === ${!isPWMManual}, pwm_manual should ${isPWMManual ? '' : 'NOT '}be checked`);
+				console.log(`${paramName} > 0 === ${!isPWMManual}, pw_manual should ${isPWMManual ? '' : 'NOT '}be checked`);
 
 				rateControl.value = paramValue;
 				rateControl.disabled = isPWMManual;
@@ -315,10 +315,47 @@ class UI {
 		this.envelopeDisplay.drawEnvelope();
 	}
 
+	getAllControls() {
+
+		return [
+			document.getElementsByTagName('input'),
+			document.getElementsByTagName('select')
+		];
+	}
+
+	ableAll(enabled) {
+
+		let allControls = this.getAllControls();
+
+		for (let collection of allControls) {
+
+			for (let i = 0; i < collection.length; i++) {
+
+				const element = collection[i];
+				console.log(`Setting ${element.id} ${enabled ? 'enabled' : 'disabled'}`);
+				element.disabled = !enabled;
+			}
+		}
+	}
+
+	enableAll() {
+
+		this.ableAll(true);
+
+		// need to respect PWM behaviour as a special case
+		if (document.getElementById('pw_manual').checked) {
+			document.getElementById('DCO_PWM_RATE').disabled = true;
+		}
+	}
+
+	disableAll() {
+
+		this.ableAll(false);
+	}
+
 	constructor(midiAccess) {
 
 		this.midiAccess = midiAccess;
-
 		this.updateMIDIPorts();
 	} 
 }
