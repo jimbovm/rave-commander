@@ -1,9 +1,17 @@
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	text-transform: uppercase;
+}
+
 form#rave_commander {
+	padding: 0;
+	margin: 0;
 	display: grid;
 	grid:
 		'midi midi tone'
 		'dco dco dco'
-		'vcf vcf lfo'
+		'lfo vcf vcf'
 		'envelope envelope vca'
 		'envelope envelope chorus';
 }
@@ -24,8 +32,10 @@ fieldset#dco_ctl {
 	grid-area: dco;
 	display: grid;
 	grid:
-		'saw pulse'
-		'sub sub'
+		'saw saw pulse'
+		'sub sub sub'
+		'dco-levels dco-levels dco-range'
+		'dco-mod dco-mod dco-mod';
 }
 
 fieldset#sawtooth_ctl {
@@ -40,6 +50,22 @@ fieldset#sub_ctl {
 	grid-area: sub;
 }
 
+fieldset#dco_modulation {
+	grid-area: dco-mod;
+}
+
+fieldset#dco_modulation label {
+	display: inline;
+}
+
+fieldset#dco_levels {
+	grid-area: dco-levels;
+}
+
+fieldset#dco_range {
+	grid-area: dco-range;
+}
+
 fieldset#vca_ctl {
 	grid-area: vca;
 }
@@ -52,10 +78,28 @@ fieldset#lfo_ctl {
 	grid-area: lfo;
 }
 
+fieldset#lfo_ctl label {
+	display: block;
+}
+
 fieldset#chorus_ctl {
 	grid-area: chorus;
 }
 
+fieldset#chorus_ctl label, fieldset#chorus_ctl label, fieldset#vca_ctl label {
+	display: block;
+}
+
 label img {
-	max-width: 9%;
+	max-width: 48pt;
+}
+
+canvas {
+	border: 1px solid;
+	border-color: #111111;
+}
+
+span#tone_name {
+	font-family: monospace;
+	text-transform: none;
 }

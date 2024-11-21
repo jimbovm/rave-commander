@@ -253,7 +253,8 @@ SOFTWARE.
 					<input name='DCO_WAVEFORM_SUB' id='sub_5' value='5' type='radio'>
 				</p>
 			</fieldset>
-			<p id='_dco_modulation'>
+			<fieldset id='dco_modulation'>
+				<legend>Modulation</legend>
 				<label for='DCO_ENV_MODE'>Env Mode</label>
 				<select id='DCO_ENV_MODE'>
 					<option value='0'>normal</option>
@@ -274,20 +275,22 @@ SOFTWARE.
 				<input id='DCO_PWM_RATE' type='range' min='0' max='127' value='0' disabled>
 				<label for='DCO_AFTER_DEPTH'>Aftertouch Amt</label>
 				<input id='DCO_AFTER_DEPTH' type='range' min='0' max='15' value='0'>
-			</p>
-			<p id='_dco_levels'>
+			</fieldset>
+			<fieldset id='dco_levels'>
+				<legend>Levels</legend>
 				<label for='DCO_SUB_LEVEL'>Sub Level</label>
 				<input id='DCO_SUB_LEVEL' type='range' min='0' max='3' value='0'>
 
 				<label for='DCO_NOISE_LEVEL'>Noise Level</label>
 				<input id='DCO_NOISE_LEVEL' type='range' min='0' max='3' value='0'>
-			</p>
-			<p id='_dco_misc'>
-				<label for='DCO_RANGE'>Range</label>
+			</fieldset>
+			<fieldset id='dco_range'>
+				<legend>Range</legend>
+				<label for='DCO_RANGE'>DCO Range</label>
 				<input id='DCO_RANGE' type='range' min='0' max='3' value='1'>
 				<label for='BENDER_RANGE'>Bend Range</label>
 				<input id='BENDER_RANGE' type='range' min='0' max='12' value='1'>
-			</p>
+			</fieldset>
 		</fieldset>
 		<fieldset id='lfo_ctl' oninput='ui.getLFO()'>
 			<legend>LFO</legend>
@@ -327,25 +330,27 @@ SOFTWARE.
 		<fieldset id='envelope_ctl' oninput='ui.getEnvelope()'>
 			<legend>Envelope</legend>
 			<p class='_envelope_display'>
-				<canvas height='127' width='508' id='envelope_display' style='background-color: black;''>
+				<canvas height='127' width='508' id='envelope_display'>
 					Your browser doesn't seem to support HTML5 Canvas. The envelope display won't work.
 				</canvas>
 			</p>
-			<p class='_envelope'>
+			<p class='_envelope_t'>
 				<label for='ENV_T1'>T1</label>
 				<input id='ENV_T1' type='range' min='0' max='127' value='0'>
-				<label for='ENV_L1'>L1</label>
-				<input id='ENV_L1' type='range' min='0' max='127' value='127'>
 				<label for='ENV_T2'>T2</label>
 				<input id='ENV_T2' type='range' min='0' max='127' value='32'>
-				<label for='ENV_L2'>L2</label>
-				<input id='ENV_L2' type='range' min='0' max='127' value='48'>
 				<label for='ENV_T3'>T3</label>
 				<input id='ENV_T3' type='range' min='0' max='127' value='0'>
-				<label for='ENV_L3'>L3</label>
-				<input id='ENV_L3' type='range' min='0' max='127' value='48'>
 				<label for='ENV_T4'>T4</label>
 				<input id='ENV_T4' type='range' min='0' max='127' value='16'>
+			</p>
+			<p class='_envelope_l'>
+				<label for='ENV_L1'>L1</label>
+				<input id='ENV_L1' type='range' min='0' max='127' value='127'>
+				<label for='ENV_L2'>L2</label>
+				<input id='ENV_L2' type='range' min='0' max='127' value='48'>
+				<label for='ENV_L3'>L3</label>
+				<input id='ENV_L3' type='range' min='0' max='127' value='48'>
 			</p>
 			<p class='_envelope_mod'>
 				<label for='ENV_KEY_FOLLOW'>Key Follow</label>
