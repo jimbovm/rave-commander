@@ -120,7 +120,7 @@ class EnvelopeDisplay {
 
 	getCanvas() {
 
-		return document.getElementById('visual_envelope');
+		return document.getElementById('envelope_display');
 	}
 
 	getContext() {
