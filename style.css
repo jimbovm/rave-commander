@@ -1,6 +1,6 @@
 body {
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 10pt;
+	font-size: 9pt;
 	text-transform: uppercase;
 	background-color: #313131;
 	color: #dadada;
@@ -18,8 +18,21 @@ form#rave_commander {
 		'envelope envelope chorus';
 }
 
+h1#logo {
+	margin: 0;
+	padding: 0;
+	text-align: right;
+}
+
+h1#logo img {
+	max-width: 33%;
+	max-height: 1%;
+}
+
 fieldset {
 	background-color: #545454;
+	border: 1px solid;
+	border-color: #313131;
 }
 
 legend {
@@ -32,6 +45,34 @@ select {
 	color: #dadada;
 	background-color: #3939fe;
 	text-transform: uppercase;
+	text-align: center;
+	border: 0;
+	width: 12ch;
+	height: 3em;
+}
+
+button#randomise {
+	color: #dadada;
+	background-color: #3939fe;
+	text-transform: uppercase;
+	text-align: center;
+	border: 0;
+	width: 12ch;
+	height: 3em;
+}
+
+button#hoovers {
+	color: #dadada;
+	background-color: #ca0101;
+	text-transform: uppercase;
+	text-align: center;
+	border: 0;
+	width: 12ch;
+	height: 3em;
+}
+
+input {
+	accent-color: #ca0101;
 }
 
 fieldset#midi_ctl select {

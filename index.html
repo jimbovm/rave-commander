@@ -34,6 +34,8 @@ SOFTWARE.
 	<script src='EnvelopeDisplay.js'></script>
 	<script src='MIDIReceiver.js'></script>
 	
+	<h1 id='logo'><img alt='logo.svg' src='logo.svg'></h1>
+
 	<form id='rave_commander'>
 		<fieldset id='midi_ctl'>
 			<legend>MIDI</legend>
@@ -63,7 +65,7 @@ SOFTWARE.
 				</select>
 			</p>
 		</fieldset>
-		<fieldset id='tone_ctl' onchange='ui.getTone()'>
+		<fieldset id='tone_ctl' onchange='ui.getTone()' disabled>
 			<legend>Tone</legend>
 			<p id='_tone'>
 				<label for='tone'>Tone</label>
