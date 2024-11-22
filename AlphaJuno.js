@@ -125,8 +125,6 @@ class AlphaJuno {
 				const control = document.getElementById(paramName);
 				this.tone[paramName] = parseInt(control.value);
 			}
-
-			console.log(`Tone parameter ${paramName} set to ${this.tone[paramName]}`);
 		}
 	}
 
@@ -312,7 +310,6 @@ class AlphaJuno {
 		for (let p = 0; p < 36; p++) {
 
 			let key = Object.keys(this.tone)[p];
-			console.log(`Tone parameter ${key} set to ${toneParams[p]}`);
 			this.tone[key] = toneParams[p];
 		}
 
