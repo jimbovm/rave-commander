@@ -258,6 +258,12 @@ class AlphaJuno {
 	receiveSysEx(message) {
 		console.log(`Decoding SysEx message ${message} received on ${this.input.name}`);
 
+		let channel = message[3];
+
+		if (channel !== this.channel) {
+			console.log(`SysEx message on channel ${channel} !== ${this.channel}, ignoring`)
+		}
+
 		let criticalBytes = [
 			message[0] === this.SYSEX_START,
 			message[1] === this.ROLAND_ID,
@@ -281,9 +287,11 @@ class AlphaJuno {
 		switch (opcode) {
 			case this.opcodes.APR:
 				log('APR', payload);
-				return this.receiveAllParamsAndName(payload);
+				this.receiveAllParamsAndName(payload);
+				break;
 			case this.opcodes.IPR:
 				log('IPR', payload);
+				this.receiveIndividualParameter(payload);
 				break;
 			default:
 				console.log('Decoded unknown SysEx operation');
@@ -314,6 +322,34 @@ class AlphaJuno {
 		}
 
 		document.getElementById('tone_name').innerHTML = toneNameText;
+
+		ui.setAll();
+	}
+
+	/**
+	 * Receive an individual parameter from the Alpha Juno.
+	 * 
+	 * @param {*} payload 
+	 * @returns 
+	 */
+	receiveIndividualParameter(payload) {
+
+		let payloadLengthIsEven = (payload.length & 1) === 0;
+
+		if (!payloadLengthIsEven) {
+			console.log(`IPR payload ${payload} is malformed; length is ${payload.length} which is odd, aborting`);
+			return;
+		}
+
+		for (let setting = 0; setting+1 < payload.length; setting += 2) {
+
+			let paramNumber = payload[setting];
+			let paramValue = payload[setting + 1];
+			let toneParameter = Object.keys(this.tone)[paramNumber];
+
+			console.log(`Setting individual parameter ${toneParameter} to ${paramValue}`);
+			this.tone[toneParameter] = paramValue;
+		}
 
 		ui.setAll();
 	}
