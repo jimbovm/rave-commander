@@ -315,10 +315,10 @@ class AlphaJuno {
 
 		console.log(`${this.receiveAllParamsAndName.name}: Decoded APR payload, tone name "${toneNameText}" (${toneName.length} bytes), tone params ${toneParams} (${toneParams.length} bytes)`);
 
-		for (let p = 0; p < 36; p++) {
+		for (let paramNumber = 0; paramNumber < 36; paramNumber++) {
 
-			let key = Object.keys(this.tone)[p];
-			this.tone[key] = toneParams[p];
+			let toneParameter = Object.keys(this.tone)[paramNumber];
+			this.tone[toneParameter] = toneParams[paramNumber];
 		}
 
 		document.getElementById('tone_name').innerHTML = toneNameText;
