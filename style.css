@@ -2,6 +2,8 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 10pt;
 	text-transform: uppercase;
+	background-color: #313131;
+	color: #dadada;
 }
 
 form#rave_commander {
@@ -14,6 +16,26 @@ form#rave_commander {
 		'lfo vcf vcf'
 		'envelope envelope vca'
 		'envelope envelope chorus';
+}
+
+fieldset {
+	background-color: #545454;
+}
+
+legend {
+	background-color: #545454;
+	color: #ca0101;
+	font-weight: bold;
+}
+
+select {
+	color: #dadada;
+	background-color: #3939fe;
+	text-transform: uppercase;
+}
+
+fieldset#midi_ctl select {
+	background-color: #ca0101;	
 }
 
 fieldset#midi_ctl {
@@ -95,8 +117,7 @@ label img {
 }
 
 canvas {
-	border: 1px solid;
-	border-color: #111111;
+	background-color: #313131;
 }
 
 span#tone_name {
