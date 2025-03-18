@@ -153,10 +153,6 @@ fieldset#chorus_ctl label, fieldset#chorus_ctl label, fieldset#vca_ctl label {
 	display: block;
 }
 
-label img {
-	max-width: 48pt;
-}
-
 canvas {
 	background-color: #313131;
 }
